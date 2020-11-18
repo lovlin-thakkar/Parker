@@ -88,8 +88,8 @@ public class ParkingLot {
 
         return freeSlot;
     }
-	
-	public int park(CarInfo carInfo) {
+    
+    public int park(CarInfo carInfo) {
         if (availability.get() <= 0) {
             return -1;
         }
