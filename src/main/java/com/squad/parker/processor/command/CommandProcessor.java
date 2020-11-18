@@ -9,14 +9,12 @@ import com.squad.parker.model.CommandType;
 import com.squad.parker.model.ParkingLot;
 import com.squad.parker.processor.Processor;
 
-import org.apache.commons.lang3.StringUtils;
-
 public class CommandProcessor implements Processor<String, String> {
 
     private static ParkingLot parkingLot = ParkingLot.getInstance();
 
     public String process(String command) {
-        command = StringUtils.trimToEmpty(command);
+        command = command.trim();
 
         CommandType commandType = determineCommandType(command);
         String output;
