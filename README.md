@@ -23,6 +23,9 @@ To try with a separate file,
 - Either edit `src/resources/input.txt` OR 
 - Create a new file and run the command with path of the new file. (i.e. `./runApp.sh file_path`)
 
+#### Troubleshooting:
+If `Permission denied` on running the shell script -> Run command: `chmod 555 runApp.sh` and try again.
+
 ## Notable Features:
 - Opens this README page in default browser in case of incorrect way of executing the shell script. 
 <br/>(e.g., no input file path passed as argument, or file not found)
