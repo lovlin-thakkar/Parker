@@ -16,7 +16,7 @@ public class Constants {
     public static final String CREATE_PARKING_COMMAND_OUTPUT        = "Created parking of %s slots";    
     public static final String PARKING_SPACE_FULL_ERROR_MESSAGE     = "Sorry! Parking Space Full! Please try again after some time.";
     public static final String PARK_SUCCESS_OUTPUT                  = "Car with vehicle registration number '%s' has been parked at slot number %s";
-    public static final String LEAVE_CAR_FAILURE_OUTPUT             = "Unable to unpark, no car is parked at slot [%s].";
+    public static final String LEAVE_CAR_FAILURE_OUTPUT             = "Slot number [%s] already vacant.";
     public static final String PARKING_LOT_NOT_INITIALIZED          = "Please run Create Parking Lot command before running other commands.";
     public static final String LOT_SIZE_SHOULD_BE_NON_ZERO_POSITIVE = "Parking Lot size should be greater than 0.";
 

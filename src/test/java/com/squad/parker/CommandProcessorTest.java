@@ -33,8 +33,9 @@ public class CommandProcessorTest {
         assertEquals("Car with vehicle registration number 'PB-01-TG-2341' has been parked at slot number 3", commandProcessor.process("Park PB-01-TG-2341 driver_age 40"));
         assertEquals("2", commandProcessor.process("Slot_number_for_car_with_number PB-01-HH-1234"));
         assertEquals("Slot number 2 vacated, the car with vehicle registration number 'PB-01-HH-1234' left the space, the driver of the car was of age 21", commandProcessor.process("Leave 2"));
+        assertEquals("Slot number [2] already vacant.", commandProcessor.process("Leave 2"));
         assertEquals("Car with vehicle registration number 'HR-29-TG-3098' has been parked at slot number 2", commandProcessor.process("Park HR-29-TG-3098 driver_age 39"));
-        assertEquals("There are no Cars parked with drivers of age [18].", commandProcessor.process("Vehicle_registration_number_for_driver_of_age 18"));   
+        assertEquals("There are no Cars parked with drivers of age [18].", commandProcessor.process("Vehicle_registration_number_for_driver_of_age 18"));
     }
     
 }
