@@ -45,7 +45,7 @@ public class CommandProcessor implements Processor<String, String> {
     private String querySlotsForCarNum(String command) {
         String carNumber = command.split(" ")[1];
         int slot = parkingLot.getSlotsForCarNum(carNumber);
-        if (slot != -1) {
+        if (slot != Constants.UNAVAILABLE) {
             return String.valueOf(slot);
         } else {
             return String.format(Constants.QUERY_SLOTS_FOR_CAR_NUM_OUTPUT, carNumber);
@@ -101,9 +101,9 @@ public class CommandProcessor implements Processor<String, String> {
     private String park(String command) {
         int age = Integer.parseInt(command.split(" ")[3]);
         String carNumber = command.split(" ")[1];
-        int slotNumber = parkingLot.park(new CarInfo(carNumber, -1, age));
+        int slotNumber = parkingLot.park(new CarInfo(carNumber, Constants.UNAVAILABLE, age));
 
-        if (slotNumber == -1) {
+        if (slotNumber == Constants.UNAVAILABLE) {
             return Constants.PARKING_SPACE_FULL_ERROR_MESSAGE;
         }
 

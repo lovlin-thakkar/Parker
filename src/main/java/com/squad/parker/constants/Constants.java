@@ -4,6 +4,8 @@ public class Constants {
 
     private Constants() {}
 
+    public static final int UNAVAILABLE                             = -1;
+
     public static final String FILE_NOT_FOUND_ERROR                 = "Unable to find file with path [%s]!";
     public static final String README_WEBPAGE_URL                   = "https://github.com/lovlin-thakkar/Parker/blob/main/README.md#parker";
     public static final String UNRECOGNIZED_COMMAND_OUTPUT          = "Unrecognized command, please try again.";

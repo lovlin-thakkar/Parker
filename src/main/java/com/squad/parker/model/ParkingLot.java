@@ -10,6 +10,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+import com.squad.parker.constants.Constants;
+
 public class ParkingLot {
 
     private TreeSet<Integer> freeSlots;
@@ -84,7 +86,7 @@ public class ParkingLot {
     private int getFreeSlot() {
         readWriteLock.readLock().lock();
         
-        int freeSlot = -1;
+        int freeSlot = Constants.UNAVAILABLE;
 
         try {
             if (!freeSlots.isEmpty()) {
@@ -103,7 +105,7 @@ public class ParkingLot {
      */
     public int park(CarInfo carInfo) {
         if (availability.get() <= 0) {
-            return -1;
+            return Constants.UNAVAILABLE;
         }
 
         readWriteLock.writeLock().lock();
@@ -112,8 +114,8 @@ public class ParkingLot {
 
         try {
             slotNumber = getFreeSlot();
-            if (slotNumber == -1) {
-                return -1;
+            if (slotNumber == Constants.UNAVAILABLE) {
+                return Constants.UNAVAILABLE;
             }
 
             freeSlots.remove(slotNumber);
@@ -148,7 +150,7 @@ public class ParkingLot {
             readWriteLock.readLock().unlock();
         }
 
-        return -1;
+        return Constants.UNAVAILABLE;
     }
 
     /**
