@@ -20,3 +20,8 @@ A Command Line Interface for making note of car and driver information for a Par
 4. Run command: ./runApp.sh src/resources/input.txt
 
 To try with a separate file, either edit src/resources/input.txt or create a new file and run the command with path of the new file. (i.e. ./runApp.sh file_path)
+
+### Notable Features:
+- Opens this README page in default browser in case of incorrect way of executing the shell script. 
+<br/>(e.g., no input file path passed as argument, or file not found)
+- Thread-safe way of handling each command using Read Write lock & Atomic Integer.
