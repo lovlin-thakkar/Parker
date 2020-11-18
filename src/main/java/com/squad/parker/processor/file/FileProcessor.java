@@ -10,16 +10,15 @@ import java.util.stream.Collectors;
 
 import com.squad.parker.constants.Constants;
 import com.squad.parker.processor.Processor;
-import com.squad.parker.processor.command.CommandProcessor;
 import com.squad.parker.utils.CommonUtils;
 
 public class FileProcessor implements Processor<String, Boolean> {
 
     public static final Logger LOG = Logger.getLogger(FileProcessor.class.getName());
 
-    private CommandProcessor commandProcessor; 
+    private Processor<String, String> commandProcessor; 
 
-    public FileProcessor(final CommandProcessor commandProcessor) {
+    public FileProcessor(final Processor<String, String> commandProcessor) {
         this.commandProcessor = commandProcessor;
     }
 

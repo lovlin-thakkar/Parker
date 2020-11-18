@@ -11,7 +11,7 @@ public class App {
 
     public static final Logger LOG = Logger.getLogger(App.class.getName());
 
-    public static final FileProcessor fileProcessor = new FileProcessor(new CommandProcessor());
+    public static final Processor<String, Boolean> fileProcessor = new FileProcessor(new CommandProcessor());
 
     public static void main(final String[] args) {
         if (args.length == 1) {
