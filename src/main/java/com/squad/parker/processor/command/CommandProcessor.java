@@ -3,6 +3,7 @@ package com.squad.parker.processor.command;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import com.squad.parker.constants.Constants;
 import com.squad.parker.model.CarInfo;
 import com.squad.parker.model.CommandType;
 import com.squad.parker.model.ParkingLot;
@@ -11,7 +12,7 @@ public class CommandProcessor {
 
     private static ParkingLot parkingLot = new ParkingLot();
 
-    public void processCommand(String command) {
+    public String processCommand(String command) {
         CommandType commandType = determineCommandType(command);
         String output;
 
@@ -28,10 +29,10 @@ public class CommandProcessor {
         } else if (commandType == CommandType.QUERY_SLOTS_FOR_CAR_NUM) {
             output = querySlotsForCarNum(command);
         } else {
-            output = "Unrecognized command, please try again.";
+            output = Constants.UNRECOGNIZED_COMMAND_OUTPUT;
         }
 
-        System.out.println(output);
+        return output;
     }
 
     private String querySlotsForCarNum(String command) {
@@ -40,7 +41,7 @@ public class CommandProcessor {
         if (slot != -1) {
             return String.valueOf(slot);
         } else {
-            return String.format("Car with registration number [%s] has not been parked at the Parking Lot.", carNumber);
+            return String.format(Constants.QUERY_SLOTS_FOR_CAR_NUM_OUTPUT, carNumber);
         }
     }
 
@@ -48,9 +49,9 @@ public class CommandProcessor {
         int age = Integer.parseInt(command.split(" ")[1]);
         List<String> slots = parkingLot.getSlotsForAge(age);
         if (!slots.isEmpty()) {
-            return String.join(",", slots);
+            return String.join(", ", slots);
         } else {
-            return String.format("There are no Cars parked with drivers of age [%s].", age);
+            return String.format(Constants.NO_CARS_WITH_DRIVERS_AGE_OUTPUT, age);
         }
     }
 
@@ -58,9 +59,9 @@ public class CommandProcessor {
         int age = Integer.parseInt(command.split(" ")[1]);
         List<String> carNumbers = parkingLot.getCarNumsForAge(age);
         if (!carNumbers.isEmpty()) {
-            return String.join(",", carNumbers);
+            return String.join(", ", carNumbers);
         } else {
-            return String.format("There are no Cars parked with drivers of age [%s].", age);
+            return String.format(Constants.NO_CARS_WITH_DRIVERS_AGE_OUTPUT, age);
         }
     }
 
@@ -68,9 +69,7 @@ public class CommandProcessor {
         int slotNumber = Integer.parseInt(command.split(" ")[1]);
         CarInfo leavingCar = parkingLot.leave(slotNumber);
 
-        return String.format("Slot number %s vacated, " +
-                            "the car with vehicle registration number '%s' left the space, " + 
-                            "the driver of the car was of age %s", 
+        return String.format(Constants.LEAVE_COMMAND_OUTPUT, 
                             leavingCar.getSlotNumber(), 
                             leavingCar.getRegistrationNumber(), 
                             leavingCar.getDriverAge());
@@ -80,7 +79,7 @@ public class CommandProcessor {
         int size = Integer.parseInt(command.split(" ")[1]);
         parkingLot.createLot(size);
 
-        return String.format("Created parking of %s slots", size);
+        return String.format(Constants.CREATE_PARKING_COMMAND_OUTPUT, size);
     }
 
     private String park(String command) {
@@ -89,10 +88,10 @@ public class CommandProcessor {
         int slotNumber = parkingLot.park(new CarInfo(carNumber, -1, age));
 
         if (slotNumber == -1) {
-            return "Sorry! Parking Space Full! Please try again after some time.";
+            return Constants.PARKING_SPACE_FULL_ERROR_MESSAGE;
         }
 
-        return String.format("Car with vehicle registration number '%s' has been parked at slot number %s", carNumber, slotNumber);
+        return String.format(Constants.PARK_SUCCESS_OUTPUT, carNumber, slotNumber);
     }
 
     public CommandType determineCommandType(String command) {

@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.squad.parker.constants.Constants;
 import com.squad.parker.processor.command.CommandProcessor;
@@ -23,10 +24,12 @@ public class FileProcessor {
 
     public void processFile(final String filePath) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
-            bufferedReader.lines().forEach(command -> commandProcessor.processCommand(command));
+            for (String command : bufferedReader.lines().collect(Collectors.toList())) {
+                System.out.println(commandProcessor.processCommand(command));
+            }
         } catch (final FileNotFoundException exception) {
             LOG.log(Level.SEVERE, String.format(Constants.FILE_NOT_FOUND_ERROR, filePath), exception);
-            CommonUtils.openWebpage("https://www.google.com");
+            CommonUtils.openWebpage(Constants.README_WEBPAGE_URL);
         } catch (final IOException exception) {
             LOG.log(Level.SEVERE, exception.getMessage(), exception);
         }
