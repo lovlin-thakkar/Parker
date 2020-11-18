@@ -14,14 +14,16 @@ A Command Line Interface for making note of car and driver information for a Par
 
 
 ## How to Run:
-1. Download the repository as ZIP from Github.
+1. Download the Repository as ZIP from GitHub.
 2. Extract the ZIP file.
-3. Open a Terminal in the extracted directory's location (Or cd into the extracted directory).
-4. Run command: ./runApp.sh src/resources/input.txt
+3. Open a Terminal / Command Prompt in the extracted directory's location (OR navigate into the extracted directory using `cd` command).
+4. Run command: `./runApp.sh src/resources/input.txt`
 
-To try with a separate file, either edit src/resources/input.txt or create a new file and run the command with path of the new file. (i.e. ./runApp.sh file_path)
+To try with a separate file, 
+- Either edit `src/resources/input.txt` OR 
+- Create a new file and run the command with path of the new file. (i.e. `./runApp.sh file_path`)
 
 ## Notable Features:
 - Opens this README page in default browser in case of incorrect way of executing the shell script. 
 <br/>(e.g., no input file path passed as argument, or file not found)
-- Thread-safe way of handling each command using Read Write lock & Atomic Integer.
+- Thread-safe way of handling each command using Read Write Lock & Atomic Integer.
