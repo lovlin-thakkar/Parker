@@ -1,4 +1,5 @@
 package com.squad.parker.constants;
+
 public class Constants {
 
     private Constants() {}
@@ -13,4 +14,5 @@ public class Constants {
     public static final String CREATE_PARKING_COMMAND_OUTPUT    = "Created parking of %s slots";    
     public static final String PARKING_SPACE_FULL_ERROR_MESSAGE = "Sorry! Parking Space Full! Please try again after some time.";
     public static final String PARK_SUCCESS_OUTPUT              = "Car with vehicle registration number '%s' has been parked at slot number %s";
+    
 }

@@ -15,7 +15,8 @@ public class App {
 
     public static void main(final String[] args) {
         if (args.length == 1) {
-            fileProcessor.processFile(args[0]);
+            boolean success = fileProcessor.process(args[0]);
+            System.out.println(success ? "\nSuccessfully Processed :)" : "\nFailed :(");
         } else {
             CommonUtils.openWebpage(Constants.README_WEBPAGE_URL);
         }

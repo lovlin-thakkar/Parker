@@ -26,9 +26,9 @@ public class CommandProcessorTest {
 
     @Test
     public void processCommandTest() {
-        assertEquals("Created parking of 6 slots", commandProcessor.processCommand("Create_parking_lot 6"));
-        assertEquals("Slot number 2 vacated, the car with vehicle registration number 'PB-01-HH-1234' left the space, the driver of the car was of age 21", commandProcessor.processCommand("Leave 2"));
-        assertEquals("Created parking of 6 slots", commandProcessor.processCommand(""));
+        assertEquals("Created parking of 6 slots", commandProcessor.process("Create_parking_lot 6"));
+        assertEquals("Slot number 2 vacated, the car with vehicle registration number 'PB-01-HH-1234' left the space, the driver of the car was of age 21", commandProcessor.process("Leave 2"));
+        assertEquals("Created parking of 6 slots", commandProcessor.process(""));
     }
     
 }

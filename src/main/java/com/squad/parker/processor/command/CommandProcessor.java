@@ -7,12 +7,13 @@ import com.squad.parker.constants.Constants;
 import com.squad.parker.model.CarInfo;
 import com.squad.parker.model.CommandType;
 import com.squad.parker.model.ParkingLot;
+import com.squad.parker.processor.Processor;
 
-public class CommandProcessor {
+public class CommandProcessor implements Processor<String, String> {
 
     private static ParkingLot parkingLot = new ParkingLot();
 
-    public String processCommand(String command) {
+    public String process(String command) {
         CommandType commandType = determineCommandType(command);
         String output;
 

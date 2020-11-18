@@ -9,10 +9,11 @@ import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
 import com.squad.parker.constants.Constants;
+import com.squad.parker.processor.Processor;
 import com.squad.parker.processor.command.CommandProcessor;
 import com.squad.parker.utils.CommonUtils;
 
-public class FileProcessor {
+public class FileProcessor implements Processor<String, Boolean> {
 
     public static final Logger LOG = Logger.getLogger(FileProcessor.class.getName());
 
@@ -22,16 +23,23 @@ public class FileProcessor {
         this.commandProcessor = commandProcessor;
     }
 
-    public void processFile(final String filePath) {
+    public Boolean process(final String filePath) {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(filePath))) {
             for (String command : bufferedReader.lines().collect(Collectors.toList())) {
-                System.out.println(commandProcessor.processCommand(command));
+                System.out.println(commandProcessor.process(command));
             }
+
+            return true;
+
         } catch (final FileNotFoundException exception) {
             LOG.log(Level.SEVERE, String.format(Constants.FILE_NOT_FOUND_ERROR, filePath), exception);
             CommonUtils.openWebpage(Constants.README_WEBPAGE_URL);
+
         } catch (final IOException exception) {
             LOG.log(Level.SEVERE, exception.getMessage(), exception);
+
         }
+
+        return false;
     }
 }
