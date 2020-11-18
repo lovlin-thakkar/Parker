@@ -14,8 +14,8 @@ A Command Line Interface for making note of car and driver information for a Par
 
 
 ## How to Run:
-1. Download the Repository as ZIP from GitHub.
-2. Extract the ZIP file.
+1. Download the Repository as ZIP from GitHub. 
+2. Extract the ZIP file. (alternatively downloading `package/` and `runApp.sh` works too)
 3. Open a Terminal / Command Prompt in the extracted directory's location (OR navigate into the extracted directory using `cd` command).
 4. Run command: `./runApp.sh src/resources/input.txt`
 
