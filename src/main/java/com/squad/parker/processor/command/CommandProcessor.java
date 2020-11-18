@@ -11,7 +11,7 @@ import com.squad.parker.processor.Processor;
 
 public class CommandProcessor implements Processor<String, String> {
 
-    private static ParkingLot parkingLot = new ParkingLot();
+    private static ParkingLot parkingLot = ParkingLot.getInstance();
 
     public String process(String command) {
         CommandType commandType = determineCommandType(command);
@@ -19,18 +19,24 @@ public class CommandProcessor implements Processor<String, String> {
 
         if (commandType == CommandType.CREATE_PARKING_LOT) {
             output = createLot(command);
-        } else if (commandType == CommandType.PARK_CAR) {
-            output = park(command);
-        } else if (commandType == CommandType.LEAVE_CAR) {
-            output = leave(command);
-        } else if (commandType == CommandType.QUERY_CAR_NUMS_FOR_AGE) {
-            output = queryCarNumsForAge(command);
-        } else if (commandType == CommandType.QUERY_SLOTS_FOR_AGE) {
-            output = querySlotsForAge(command);
-        } else if (commandType == CommandType.QUERY_SLOTS_FOR_CAR_NUM) {
-            output = querySlotsForCarNum(command);
         } else {
-            output = Constants.UNRECOGNIZED_COMMAND_OUTPUT;
+            if (!parkingLot.isLotInitialized()) {
+                output = Constants.PARKING_LOT_NOT_INITIALIZED;
+            } else {
+                if (commandType == CommandType.PARK_CAR) {
+                    output = park(command);
+                } else if (commandType == CommandType.LEAVE_CAR) {
+                    output = leave(command);
+                } else if (commandType == CommandType.QUERY_CAR_NUMS_FOR_AGE) {
+                    output = queryCarNumsForAge(command);
+                } else if (commandType == CommandType.QUERY_SLOTS_FOR_AGE) {
+                    output = querySlotsForAge(command);
+                } else if (commandType == CommandType.QUERY_SLOTS_FOR_CAR_NUM) {
+                    output = querySlotsForCarNum(command);
+                } else {
+                    output = Constants.UNRECOGNIZED_COMMAND_OUTPUT;
+                }
+            }
         }
 
         return output;
@@ -70,6 +76,10 @@ public class CommandProcessor implements Processor<String, String> {
         int slotNumber = Integer.parseInt(command.split(" ")[1]);
         CarInfo leavingCar = parkingLot.leave(slotNumber);
 
+        if (leavingCar == null) {
+            return String.format(Constants.LEAVE_CAR_FAILURE_OUTPUT, slotNumber);
+        }
+
         return String.format(Constants.LEAVE_COMMAND_OUTPUT, 
                             leavingCar.getSlotNumber(), 
                             leavingCar.getRegistrationNumber(), 
@@ -78,6 +88,11 @@ public class CommandProcessor implements Processor<String, String> {
 
     private String createLot(String command) {
         int size = Integer.parseInt(command.split(" ")[1]);
+
+        if (size <= 0) {
+            return Constants.LOT_SIZE_SHOULD_BE_NON_ZERO_POSITIVE;
+        }
+
         parkingLot.createLot(size);
 
         return String.format(Constants.CREATE_PARKING_COMMAND_OUTPUT, size);
