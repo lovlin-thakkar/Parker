@@ -55,6 +55,11 @@ public class ParkingLot {
         }
     }
 
+    /**
+     * Unpark the car at given slot number.
+     * @param slotNumber to unpark from.
+     * @return CarInfo for the unparked car, null if there was no car at given slot number.
+     */
     public CarInfo leave(int slotNumber) {
         readWriteLock.writeLock().lock();
 
@@ -73,7 +78,10 @@ public class ParkingLot {
         return leftCarInfo;
     }
 
-    public int getFreeSlot() {
+    /**
+     * @return returns first free slot from the parking lot.
+     */
+    private int getFreeSlot() {
         readWriteLock.readLock().lock();
         
         int freeSlot = -1;
@@ -89,6 +97,10 @@ public class ParkingLot {
         return freeSlot;
     }
     
+    /**
+     * Parks the Car with given CarInfo.
+     * @return slot number assigned to the parked car. Returns -1 if unable to park the car.
+     */
     public int park(CarInfo carInfo) {
         if (availability.get() <= 0) {
             return -1;
@@ -117,6 +129,9 @@ public class ParkingLot {
         return slotNumber;
     }
 
+    /**
+     * @return returns slot number for car with given registration number, -1 if not found.
+     */
     public int getSlotsForCarNum(String registrationNumber) {
         readWriteLock.readLock().lock();
 
@@ -136,6 +151,9 @@ public class ParkingLot {
         return -1;
     }
 
+    /**
+     * @return returns list of slot numbers for a given driver age, empty list if no slots found.
+     */
     public List<String> getSlotsForAge(int age) {
         readWriteLock.readLock().lock();
         
@@ -157,6 +175,9 @@ public class ParkingLot {
         return slots;
     }
 
+    /**
+     * @return returns list of registration numbers for a given driver age, returns empty list if no cars found.
+     */
     public List<String> getCarNumsForAge(int age) {
         readWriteLock.readLock().lock();
 

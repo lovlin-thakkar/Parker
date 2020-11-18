@@ -1,5 +1,9 @@
 package com.squad.parker.model;
 
+/**
+ * Represents different types of valid Commands along with their valid regex expression.
+ * The regex is used to determine the type of the command.
+ */
 public enum CommandType {
     CREATE_PARKING_LOT("^Create_parking_lot [0-9]+$"),
     PARK_CAR("^Park [A-Z]{2}-[0-9]{2}-[A-Z]{2}-[0-9]{4} driver_age [0-9]+$"),

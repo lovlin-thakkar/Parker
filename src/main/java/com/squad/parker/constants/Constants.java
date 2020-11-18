@@ -5,7 +5,7 @@ public class Constants {
     private Constants() {}
 
     public static final String FILE_NOT_FOUND_ERROR                 = "Unable to find file with path [%s]!";
-    public static final String README_WEBPAGE_URL                   = "https://github.com/lovlin-thakkar/Parker/blob/main/README.md";
+    public static final String README_WEBPAGE_URL                   = "https://github.com/lovlin-thakkar/Parker/blob/main/README.md#parker";
     public static final String UNRECOGNIZED_COMMAND_OUTPUT          = "Unrecognized command, please try again.";
     public static final String QUERY_SLOTS_FOR_CAR_NUM_OUTPUT       = "Car with registration number [%s] has not been parked at the Parking Lot.";
     public static final String NO_CARS_WITH_DRIVERS_AGE_OUTPUT      = "There are no Cars parked with drivers of age [%s].";
