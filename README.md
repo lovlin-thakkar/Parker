@@ -1,6 +1,8 @@
 # Parker
 A Command Line Interface for making note of car and driver information for a Parking Lot.
 
+![Java CI with Maven](https://github.com/lovlin-thakkar/Parker/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 ## Valid Commands:
 
 | Command  | Description |
